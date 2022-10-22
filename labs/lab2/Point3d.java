@@ -10,8 +10,7 @@ public class Point3d extends Point2d {
     }
 
     public Point3d() {
-        super();
-        this.zCoord = 0.0;
+        this(0, 0, 0);
     }
 
     public boolean isEqual(Point3d points1) {
@@ -34,20 +33,5 @@ public class Point3d extends Point2d {
                 + Math.pow(this.getZ() - points1.getZ(), 2));
     }
 
-    public static double computeArea(Point3d points1, Point3d points2, Point3d points3) {
-
-        double a = Math.abs(points2.distanceTo(points1));
-        double b = Math.abs(points3.distanceTo(points2));
-        double c = Math.abs(points1.distanceTo(points3));
-
-        double half_perimeter = (a + b + c) / 2;
-
-        double square = Math.sqrt(half_perimeter * (half_perimeter - a) * (half_perimeter - b) * (half_perimeter - c));
-        double scale = Math.pow(10, 2);
-
-        return Math.ceil(square * scale) / scale;
-
-    }
-   
 }
    
