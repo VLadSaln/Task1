@@ -2,8 +2,19 @@
 public class SecondTasks {
     public static void main(String[] args) {
         // System.out.println(repeat("mice", 5));
-        // System.out.println(differenceMaxMin(new int[] { 10, 4, 1, 4, -10, -50, 32, 21
-        // }));
+        // System.out.println(differenceMaxMin(new int[] { 10, 4, 1, 4, -10, -50, 32, 21}));
+        // System.out.println(isAvgWhole(new int[] {1, 2, 3, 4}));
+        // int[] result = cumulativeSum(new int[] {1, 2, 3});
+        // for (int i = 0;i < result.length; i++){
+        //      System.out.println(result[i]);
+        //    }
+        // System.out.println(getDecimalPlaces("43.20"));
+        // System.out.println(Fibonacci(12));
+        // System.out.println(isValid("59001"));
+        // System.out.println(isStrangePair("", "kl;kl;"));
+         System.out.println(isPrefix("automation", "auto-"));
+         System.out.println(isSuffix("arachnophobia", "-phobia"));
+        // System.out.println(boxSeq(4));
 
     }
 
@@ -66,16 +77,24 @@ public class SecondTasks {
     }
 
     private static Integer getDecimalPlaces(String number) {
+        if (number.contains(".")) {
         String fractionalPart = number.split("\\.")[1];
         return fractionalPart.length();
+        }
+        else {
+            return 0;
+        }
+        
     }
 
     private static Integer Fibonacci(int number) {
 
-        if (number == 0 || number == 1)
+        if (number == 0)
             return 0;
-        else if (number == 2)
+        else if (number == 1)
             return 1;
+        else if (number == 2)
+            return 2;
 
         return Fibonacci(number - 1) + Fibonacci(number - 2);
     }
@@ -86,21 +105,33 @@ public class SecondTasks {
         } catch (NumberFormatException nfe) {
             return false;
         }
+        if (str.length()==5){
         return true;
+    }
+        else {
+            return false;
+        }
     }
 
     private static boolean isStrangePair(String firstStr, String secondStr) {
-
+        if (firstStr == "" & secondStr == "") {
+            return true;
+        }
+        if (firstStr == "" || secondStr == ""){
+            return false;
+        } 
         return ((firstStr.charAt(0) == secondStr.charAt(secondStr.length() - 1))
                 && (firstStr.charAt(firstStr.length() - 1) == secondStr.charAt(0)));
 
     }
 
     private static boolean isPrefix(String word, String prefix) {
+        prefix = prefix.substring(0,prefix.length()-1);
         return (word.indexOf(prefix) == 0);
     }
 
     private static boolean isSuffix(String word, String suffix) {
+        suffix = suffix.substring(1);
         return (word.indexOf(suffix) == word.length() - suffix.length());
     }
 
