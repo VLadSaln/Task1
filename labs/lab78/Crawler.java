@@ -1,9 +1,7 @@
 
 import java.net.*;
 
-/*
- * Основной класс запуска программы
- */
+
 public class Crawler {
     private URLPool pool;
 
@@ -16,22 +14,15 @@ public class Crawler {
         pool.add(new URLDepthPair(rootURL, 0));
     }
 
-    /*
-     * Запускает сканер
-     */
+   
     public void crawl() {
-        /*
-         * Запускает потоки
-         */
+       
         for (int i = 0; i < threads; i++) {
             CrawlerTask crawler = new CrawlerTask(pool);
             Thread thread = new Thread(crawler);
             thread.start();
         }
-        /*
-         * Проверяет на выполненность потоков, если все ожидают, значит работа
-         * закончилась
-         */
+       
         while (pool.getWaitCount() != threads) {
             try {
                 Thread.sleep(500);

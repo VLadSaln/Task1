@@ -1,22 +1,20 @@
 
 import java.util.*;
 
-/*
- * Класс описывающий пулл ссылок
- */
+
 public class URLPool {
-    // Хранит количество потоков в ожидании
+    
     private int waitCount = 0;
 
     private int maxDepth;
 
-    // Ссылки ожидающие обработку
+    
     private LinkedList<URLDepthPair> toProcessURLs;
 
-    // Обработанные ссылки
+   
     private LinkedList<URLDepthPair> processedURLs;
 
-    // Хешсет для хранения неповторяющихся ссылок
+   
     private HashSet<String> unrepeatedURLs;
 
     public URLPool(int _maxDepth) {
@@ -33,9 +31,6 @@ public class URLPool {
         }
     }
 
-    /*
-     * Вызывает wait пока в pending urls не появится ссылка (фризит поток)
-     */
     public URLDepthPair get() {
         synchronized (this) {
             while (toProcessURLs.size() == 0) {
@@ -51,10 +46,7 @@ public class URLPool {
         }
     }
 
-    /*
-     * Обрезает ссылку, добавляет ее в список обработанных и увиденных ссылок и
-     * уведомляет поток с обработчиком
-     */
+    
     public void add(URLDepthPair nextPair) {
         synchronized (this) {
             String url = nextPair.getURL().toString();
@@ -72,9 +64,7 @@ public class URLPool {
         }
     }
 
-    /*
-     * Выводит все ссылки
-     */
+   
     public void printURLs() {
         synchronized (this) {
             while (!processedURLs.isEmpty()) {

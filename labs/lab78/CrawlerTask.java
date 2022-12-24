@@ -3,12 +3,10 @@ import java.io.*;
 import java.net.*;
 import java.util.regex.*;
 
-/*
- * Класс потока сканера
- */
+
 public class CrawlerTask implements Runnable {
 
-    // Регулярные выражения дочерних ссылок
+ 
     public static final String LINK_REGEX = "href\\s*=\\s*\"([^$^\"]*)\"";
     public static final Pattern LINK_PATTERN = Pattern.compile(LINK_REGEX, Pattern.CASE_INSENSITIVE);
 
@@ -20,9 +18,6 @@ public class CrawlerTask implements Runnable {
         pool = p;
     }
 
-    /*
-     * Посылает get request для пары, возвращает сокет
-     */
     public Socket sendRequest(URLDepthPair pair)
             throws UnknownHostException, SocketException, IOException {
 
@@ -40,9 +35,7 @@ public class CrawlerTask implements Runnable {
         return socket;
     }
 
-    /*
-     * Обрабатывает ссылку и добавляет результат в пулл
-     */
+   
     public void processURL(URLDepthPair pair) throws IOException {
         Socket socket;
         try {
@@ -88,9 +81,7 @@ public class CrawlerTask implements Runnable {
         }
     }
 
-    /*
-     * Запуск
-     */
+   
     public void run() {
         URLDepthPair nextPair;
         while (true) {
