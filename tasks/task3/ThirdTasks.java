@@ -97,6 +97,7 @@ public class ThirdTasks {
                 count = "";
             }
         }
+        maxCount = count.length() > maxCount.length() ? count : maxCount;
         return maxCount;
     }
 
